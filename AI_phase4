@@ -1,0 +1,170 @@
+EARTHQUAKE PREDICTION MODEL USING        PYTHON
+
+INTRODUCTION:
+               
+★	Earthquake prediction is a branch of the science of seismology concerned with the specification of the time, location, and magnitude of futures within stated limits,and particularly "the determination of parameters for the next strong earthquake to occur in a region".
+★	Earthquake prediction is sometimes distinguished  earthquakefrom earthquake forecasting, which can be defined as the probabilistic assessment of general earthquake hazard, including the frequency and magnitude of damaging earthquakes in a given area over years or decades.Not all scientists distinguish "prediction" and "forecast", but the distinction is useful
+★	Prediction can be further distinguished from earthquake warning systems, which, upon detection of an earthquake, provide a real-time warning of seconds to neighboring regions that might be affected.
+
+SOLUTION:
+
+1.Data collection:Gather comprehensive earthquake data from
+sources like the USGS Earthquake Hazards
+Program, seismic observatories, and other
+reputable repositories. Include data on earthquake magnitude, depth,location, and historical seismic activity
+
+2.data exploration:Start by loading and exploring the Kaggle earthquake dataset.Analyze the data to understand its structure, features, and statistics.Identify any missing or inconsistent data that needs preprocessing.
+
+3.data processing:Plot the earthquake data on a world map to visualize the distribution.Explore time trends and correlations between features.
+4.Data Preprocessing:Handle missing data through imputation or removal.Normalize or scale numerical features.Encode categorical variables if necessary.
+
+5.Data Splitting:Split the dataset into a training set and a testing set.Ensure that the data is shuffled to avoid any biases.
+
+6.Feature Selection/Engineering:Identify key features that may have predictive power.Engineer new features if needed, e.g., distance from fault lines.
+
+7.Model Selection:Choose a suitable machine learning or neural network model for earthquake prediction. Neural networks like LSTM or CNN can be effective for time-series data.
+
+8.Model Training:Train the selected model using the training dataset.Tune hyper parameters to optimize model performance.
+
+9.Model Evaluation:Evaluate the model's performance on the testing dataset using appropriate metrics (e.g., RMSE, MAE for regression tasks).Visualize the model's predictions against actual earthquake magnitudes.
+
+10.Model Improvement:If the model performance is not satisfactory, consider refining the model architecture or gathering more relevant data.
+
+11.Deployment:Once you're satisfied with the model's performance, deploy it for real-time or future earthquake magnitude prediction.
+
+12.Monitoring and Maintenance:Continuously monitor the model's performance in a real-world setting and update it as necessary.
+
+13.Feedback Loop:collect user feedback to improve the model.
+
+Tools used:
+Tools and libraries like python,Django,SQLite,scikit-learn,
+Statsmodel,etc…these tools and libraries are used to built and develope your warthquake prediction model.
+
+PROGRAM:
+  
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+print(os.listdir("../input"))
+data = pd.read_csv("../input/database.csv")
+data.head()
+Data.columns
+data = data[['Date', 'Time', 'Latitude',
+'Longitude', 'Depth', 'Magnitude']]
+data.head()
+import datetime
+import time
+timestamp = []
+for d, t in zip(data['Date'], data['Time']):
+try:
+ts = datetime.datetime.strptime(d+' '+t,
+'%m/%d/%Y %H:%M:%S')
+timestamp.append(time.mktime(ts.timetuple()))
+except ValueError:
+# print('ValueError')
+timestamp.append('ValueError')
+timeStamp = pd.Series(timestamp)
+data['Timestamp'] = timeStamp.values
+final_data = data.drop(['Date', 'Time'], axis=1)
+final_data = final_data[final_data.Timestamp !=
+'ValueError']
+final_data.head()
+from mpl_toolkits.basemap import Basemap
+m =Basemap(projection='mill',llcrnrlat=-80,urcrnrlat=80,
+llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='c')
+longitudes = data["Longitude"].tolist()
+latitudes = data["Latitude"].tolist()
+#m =Basemap(width=12000000,height=9000000,projection='lcc',
+#resolution=None,lat_1=80.,lat_2=55,lat_0=80,lon_0=-107.)
+x,y = m(longitudes,latitudes)
+fig = plt.figure(figsize=(12,10))
+plt.title("All affected areas")
+m.plot(x, y, "o", markersize = 2, color = 'blue')
+m.drawcoastlines()
+m.fillcontinents(color='coral',lake_color='aqua')
+m.drawmapboundary()
+m.drawcountries()
+plt.show()
+
+X = final_data[['Timestamp', 'Latitude', 'Longitude']]
+y = final_data[['Magnitude', 'Depth']]
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X,
+y, test_size=0.2, random_state=42)
+print(X_train.shape, X_test.shape, y_train.shape,
+X_test.shape)
+(18727, 3) (4682, 3) (18727, 2) (4682, 3)
+from sklearn.ensemble import RandomForestRegressor
+reg = RandomForestRegressor(random_state=42)
+reg.fit(X_train, y_train)
+reg.predict(X_test)
+reg.score(X_test, y_test)
+from sklearn.model_selection import GridSearchCV
+parameters = {'n_estimators':[10, 20, 50, 100, 200,
+500]}
+grid_obj = GridSearchCV(reg, parameters)
+grid_fit = grid_obj.fit(X_train, y_train)
+best_fit = grid_fit.best_estimator_
+best_fit.predict(X_test)
+best_fit.score(X_test, y_test)
+from keras.models import Sequential
+from keras.layers import Dense
+def create_model(neurons, activation, optimizer, loss)
+model = Sequential()
+model.add(Dense(neurons, activation=activation,
+input_shape=(3,)))
+model.add(Dense(neurons, activation=activation))
+model.add(Dense(2, activation='softmax'))
+model.compile(optimizer=optimizer, loss=loss,
+metrics=['accuracy'])
+return model
+
+
+GENERATE INSIGHT:
+
+1.Install Dependencies:
+ 
+     You need to install the “numpy”,”matplotlib” and “pandas”
+
+>python
+>pip install numpy 
+>pip install pandas 
+>pip install matplotlib.pyplot 
+
+2.Import Libraries:
+
+>python
+Import numpy as np
+Import pandas as pd
+Import matpotlib.pyplot as plt
+
+3.Initialize earthquake prediction:
+
+ model=LogisticRegression()
+
+4.develop model and generate insights:
+
+```python
+import pandas as pd
+model = load_model('your_model_file.h5')
+test_data = pd.read_csv('your_test_data.csv')
+X_test = test_data[['feature1', 'feature2']]
+y_test = test_data['target']l
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+confusion = confusion_matrix(y_test, y_pred)
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1-score:", f1)
+print("Confusion Matrix:")
+print(confusion)
+CONCLUSION:
+★	Based on the analysis of the earthquake prediction model using Python, we evaluated its performance using various metrics such as accuracy, precision, recall, and F1-score. The model demonstrated in predicting earthquakes. 
+★	However, it's important to note that the effectiveness of the model may vary depending on the specific dataset and features useD.
+★	 Further improvements and fine-tuning may be necessary to enhance its predictive capabilities.
+★	 Overall, the model provides a promising foundation for earthquake prediction, but continued research and development are needed to achieve more accurate and reliable results.
