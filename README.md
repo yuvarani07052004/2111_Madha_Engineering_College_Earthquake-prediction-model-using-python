@@ -7,10 +7,10 @@ install jupyter notebook in your command prompt
 pip install jupyter notebook
 open the jupyter notebook
 type the code in the notebook then to be executed
-Introduction
+## Introduction
 This README provides information on how to run the Earthquake Prediction Model code and lists the dependencies required. The model is built using Python and utilizes machine learning techniques to predict earthquakes.
 
-Table of Contents
+## Table of Contents
 Prerequisites
 Installation
 Usage
@@ -20,13 +20,13 @@ Evaluation
 Contributing
 License
 Prerequisites
-Before you begin, ensure you have met the following requirements:
+## Before you begin, ensure you have met the following requirements:
 
 Python (version X.X.X)
 Pip (Python package manager)
 Jupyter Notebook (optional, for running the notebooks)
 An active internet connection to download required libraries and data
-Installation
+## Installation
 To install the required dependencies, run the following command in your terminal:
 
 bash
@@ -35,19 +35,19 @@ pip install -r requirements.txt
 The requirements.txt file contains a list of all necessary Python libraries and their versions. Make sure to install the specific versions mentioned to ensure compatibility.
 
 Usage
-To use the Earthquake Prediction Model, follow these steps:
+## To use the Earthquake Prediction Model, follow these steps:
 
 Clone or download the repository to your local machine:
 
 bash
 Copy code
-git clone https://github.com/yuvarani/earthquake-prediction-model.git
-Navigate to the project directory:
+git clone https://github.com/https://github.com/yuvarani07052004/2111_Madha_Engineering_College_Earthquake-prediction-model-using-python/tree/main/earthquake-prediction-model.git
+## Navigate to the project directory:
 
 bash
 Copy code
 cd earthquake-prediction-model
-Run the main script:
+## Run the main script:
 
 bash
 Copy code
@@ -57,7 +57,7 @@ This script will load the trained model and predict earthquakes based on the lat
 Jupyter Notebook (Alternative)
 Alternatively, you can explore the code and models using Jupyter Notebook:
 
-Start a Jupyter Notebook server:
+## Start a Jupyter Notebook server:
 
 bash
 Copy code
@@ -69,20 +69,20 @@ The model uses earthquake data, which should be obtained and preprocessed separa
 
 Data should be in CSV format and follow the provided data preprocessing guidelines.
 Model Training
-To train the earthquake prediction model, you can follow these steps:
+## To train the earthquake prediction model, you can follow these steps:
 
 Obtain and preprocess earthquake data as mentioned in the Data section.
 
 Run the data preprocessing scripts in the data_preprocessing/ directory.
 
-Train the model using the provided training script:
+## Train the model using the provided training script:
 
 bash
 Copy code
 python train_model.py
 The trained model will be saved in the models/ directory.
 
-Evaluation
+## Evaluation
 To evaluate the model's performance, you can use the provided evaluation script:
 
 bash
@@ -102,30 +102,30 @@ Data Source:https://www.kaggle.com/datasets/usgs/earthquake-database
 
 For earthquake prediction, you'll need historical earthquake data. One reliable source is the United States Geological Survey (USGS) Earthquake Catalog. You can download earthquake data from their website or use their APIs to obtain the necessary data.
 
-Description:
+## Description:
 
 Here's a simplified outline of creating a basic earthquake prediction model using Python:
 
-Data Collection and Preprocessing:
+## Data Collection and Preprocessing:
 
 Collect historical earthquake data from the USGS or other relevant sources.
 Preprocess the data, which includes cleaning, filtering, and formatting it for analysis.
 You'll need to extract relevant features such as earthquake magnitude, depth, location, and the time of occurrence.
-Feature Engineering:
+## Feature Engineering:
 
 Extract useful features from the data. For example, you can create time-based features, geographic features, or any other features that might be relevant to earthquake prediction.
-Machine Learning Model:
+## Machine Learning Model:
 
 Choose a machine learning algorithm for prediction. Common choices include decision trees, random forests, support vector machines, and neural networks.
 Split your dataset into a training set and a testing set for model evaluation.
-Training and Evaluation:
+## Training and Evaluation:
 
 Train your model on the training data and evaluate its performance on the testing data.
 Use appropriate metrics, such as accuracy, precision, recall, and F1-score, to assess the model's performance.
-Tuning and Optimization:
+## Tuning and Optimization:
 
 Experiment with hyperparameter tuning and model optimization to improve the model's performance.Deployment:
-deployement:
+## deployement:
 
 Once you have a model that performs reasonably well, you can deploy it to make real-time predictions.
 
